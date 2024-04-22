@@ -2,7 +2,6 @@ import time, os, sys, random, json
 
 os.system('cls')
 
-print("iugdzbxfkujvhzd")
 
 
 ####################    CLASSES    ###################
