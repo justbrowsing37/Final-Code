@@ -389,7 +389,7 @@ game_map = {
                        "\nReally Staring to look more like a castle rather than a chapel",
         "Exits": {"west": "Torture Chamber"},
         "Items": ["Handcuffs"],
-        "Objects": []
+        "Objects": ["Uniform"]
     }
 }
 
@@ -413,7 +413,7 @@ moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "
 items = []
 usable_items = []
 edible_items = []
-objects = []
+objects = ["coffin", "window", "Basket", "chemicals", "gate", "Skeleton", "bones", "Uniform"]
 
 
 directions = {

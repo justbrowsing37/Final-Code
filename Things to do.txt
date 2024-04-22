@@ -2,10 +2,9 @@ Things to do
 
 
 Today:
-    - Record updates
-    - Review game play
-    - Brainstorm def functions
+    - Set up object class
+    - Create shells for def functions [2 for now]
 
 Tomorrow:
-    - Better ui
-    - Faster Recognition
+    - Implement into code
+    - Test and bug fix
