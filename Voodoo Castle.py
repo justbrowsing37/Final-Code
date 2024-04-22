@@ -17,6 +17,7 @@ class Color:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     END = '\033[0m'
+    ITALICS = '\033[3m'
 
 
 class GameState:
@@ -417,13 +418,19 @@ directions = {
 }
 
 
-def hint_check(stopwatch):
+def hint_check(stopwatch, game_state):
+    current_room = game_state.current_room
     while True:
         time.sleep(30)
         elapsed_time = stopwatch.elapsedTime
-
-
-
+        if elapsed_time >= 120:
+            print(elapsed_time)
+            print((Color.ITALICS + Color.BOLD + Color.CYAN + "You awake? or are you afk?" + Color.END))
+            if current_room == "Chapel":
+                print("If you cant figure out how to move around,")
+                print((Color.BOLD + "First type 'move'" + Color.END))
+                print((Color.BOLD + "Then type 'n', 'e', 's', or 'w'" + Color.END))
+                print("Got that? Good. Get on with it.")
 
 
 ############# Testing cases #############
@@ -502,6 +509,10 @@ def load_game():
 
 def main():
     os.system('cls')
+    stopwatch = StopWatch()
+    stopwatch.start()
+    threading.Thread(target=hint_check, args=(stopwatch,), daemon=True).start()
+
     while True:
         game_state = load_game()
         if game_state is None:
