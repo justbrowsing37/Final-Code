@@ -1,4 +1,4 @@
-import time, os, sys, random, json
+import time, os, sys, random, json, threading
 
 os.system('cls')
 
@@ -60,13 +60,6 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
-
-
-
-
-
-
-
 
 
 ####################   UI STUFF    ###################
@@ -424,6 +417,11 @@ directions = {
 }
 
 
+def hint_check(stopwatch):
+    while True:
+        time.sleep(30)
+        elapsed_time = stopwatch.elapsedTime
+
 
 
 
@@ -434,7 +432,7 @@ def map_check(game_state):
     current_room = game_state.current_room
 
     print(f"Your current room is {current_room}")
-  #←→↑↓«»
+    #←→↑↓«»
 
     game_map = {
         "Gallery": {"Exits": ["Chapel"]},
@@ -484,6 +482,9 @@ def map_check(game_state):
 
 
 
+
+
+
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
@@ -498,6 +499,7 @@ def load_game():
 
 
 
+
 def main():
     os.system('cls')
     while True:
@@ -505,7 +507,7 @@ def main():
         if game_state is None:
             game_state = GameState()
 
-        print_instructions()
+        GameIntro()
 
         while game_state.current_room:
             display_room_info(game_state.current_room, game_map)
