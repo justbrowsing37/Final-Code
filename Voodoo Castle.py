@@ -418,19 +418,24 @@ directions = {
 }
 
 
-def hint_check(stopwatch, game_state):
-    current_room = game_state.current_room
+def hint_timer(stopwatch, current_room):
     while True:
-        time.sleep(30)
+        time.sleep(60)  # Check every minute
         elapsed_time = stopwatch.elapsedTime
-        if elapsed_time >= 120:
-            print(elapsed_time)
-            print((Color.ITALICS + Color.BOLD + Color.CYAN + "You awake? or are you afk?" + Color.END))
+        if elapsed_time >= 300:  # Display hint after 5 minutes of inactivity
             if current_room == "Chapel":
-                print("If you cant figure out how to move around,")
-                print((Color.BOLD + "First type 'move'" + Color.END))
-                print((Color.BOLD + "Then type 'n', 'e', 's', or 'w'" + Color.END))
-                print("Got that? Good. Get on with it.")
+                print("\nYou've been inactive for a while in the Chapel. Here's a hint: ")
+                print("Try interacting with the coffin or exploring the exits to find new areas.")
+            elif current_room == "Gallery":
+                print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
+                print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
+            # Add more elif blocks for other rooms
+            else:
+                print("\nYou've been inactive for a while. Here's a general hint: ")
+                print("Try to explore different rooms and interact with objects to progress in the game.")
+                print("You can use commands like 'take', 'move', 'use', etc.")
+                print("Have fun exploring!")
+            break
 
 
 ############# Testing cases #############
