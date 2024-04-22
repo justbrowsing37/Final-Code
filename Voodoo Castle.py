@@ -3,9 +3,6 @@ import time, os, sys, random, json
 os.system('cls')
 
 
-print("Hi guys!!!")
-
-
 ####################    CLASSES    ###################
 
 class Color:
