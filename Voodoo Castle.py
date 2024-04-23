@@ -290,8 +290,6 @@ def eat(game_state, edible_items):
 
 
 
-
-
 def inv_check(game_state):
     if not game_state.player_inventory:
         print("Your inventory is empty...")
@@ -299,8 +297,6 @@ def inv_check(game_state):
         print("Your inventory: ")
         for item in game_state.player_inventory:
             print(f"- {item}")
-
-
 
 
 
@@ -441,8 +437,12 @@ def hint_timer(stopwatch, game_state):
                 print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
                 print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
             elif current_room == "Ballroom (Fireplace)":
-                print("Hey, looks like you havent been able to dance ya weeb")
+                print("Hey, looks like you haven't been able to dance ya weeb")
                 print("You got here using west, go back using east!, ya virgin")
+            elif current_room == "Tunnel":
+                print("Just leave the same way you came. 'move' then 'w'.")
+                print("You you are having troubles, just type 'quit', and reset the run :)")
+            #insert more elif statements :) Have fun
             else:
                 print("\nYou've been inactive for a while. Here's a general hint: ")
                 print("Try to explore different rooms and interact with objects to progress in the game.")
@@ -529,7 +529,7 @@ def main():
     os.system('cls')
     stopwatch = StopWatch()
     stopwatch.start()
-    threading.Thread(target=hint_check, args=(stopwatch,), daemon=True).start()
+    threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
 
     while True:
         game_state = load_game()
