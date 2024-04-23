@@ -63,6 +63,13 @@ class StopWatch:
         print(f"Time survived: {totalTime:.2f} seconds")
 
 
+
+
+
+
+
+
+
 ####################   UI STUFF    ###################
 
 signatures = [
@@ -385,7 +392,7 @@ game_map = {
                        "\nReally Staring to look more like a castle rather than a chapel",
         "Exits": {"west": "Torture Chamber"},
         "Items": ["Handcuffs"],
-        "Objects": ["Uniform"]
+        "Objects": []
     }
 }
 
@@ -409,7 +416,7 @@ moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "
 items = []
 usable_items = []
 edible_items = []
-objects = ["coffin", "window", "Basket", "chemicals", "gate", "Skeleton", "bones", "Uniform"]
+objects = []
 
 
 directions = {
@@ -450,7 +457,7 @@ def map_check(game_state):
     current_room = game_state.current_room
 
     print(f"Your current room is {current_room}")
-    #←→↑↓«»
+  #←→↑↓«»
 
     game_map = {
         "Gallery": {"Exits": ["Chapel"]},
@@ -529,7 +536,7 @@ def main():
         if game_state is None:
             game_state = GameState()
 
-        GameIntro()
+        print_instructions()
 
         while game_state.current_room:
             display_room_info(game_state.current_room, game_map)
