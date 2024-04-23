@@ -435,7 +435,7 @@ def hint_timer(stopwatch, game_state):
     while True:
         time.sleep(60)  # Check every minute
         elapsed_time = stopwatch.elapsedTime
-        if elapsed_time >= 300:  # Display hint after 5 minutes of inactivity
+        if elapsed_time >= 120:  # Display hint after 5 minutes of inactivity
             if current_room == "Chapel":
                 print("\nYou've been inactive for a while in the Chapel. Here's a hint: ")
                 print("Try interacting with the coffin or exploring the exits to find new areas.")
@@ -444,7 +444,7 @@ def hint_timer(stopwatch, game_state):
                 print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
                 print("To do that, the command is 'open' and then just follow the prompt")
             elif current_room == "Ballroom (Fireplace)":
-                print("Hey, looks like you haven't been able to dance ya weeb")
+                print("Having fun dancing? ")
                 print("You got here using west, go back using east!, ya virgin")
             elif current_room == "Tunnel":
                 print("Just leave the same way you came. 'move' then 'w'.")
