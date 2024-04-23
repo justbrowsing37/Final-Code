@@ -564,5 +564,3 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
-
-main()
