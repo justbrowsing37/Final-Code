@@ -301,6 +301,10 @@ def inv_check(game_state):
             print(f"- {item}")
 
 
+def help():
+    print("Not much more help i can give you")
+
+
 
 game_map = {
     "Chapel": {
@@ -438,6 +442,7 @@ def hint_timer(stopwatch, game_state):
             elif current_room == "Gallery":
                 print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
                 print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
+                print("To do that, the command is 'open' and then just follow the prompt")
             elif current_room == "Ballroom (Fireplace)":
                 print("Hey, looks like you haven't been able to dance ya weeb")
                 print("You got here using west, go back using east!, ya virgin")
@@ -550,6 +555,10 @@ def main():
             
             if command == "inventory":
                 inv_check(game_state)
+                continue
+            
+            elif command == "help":
+                help()
                 continue
 
             if command not in moves:
