@@ -516,7 +516,7 @@ def main():
     os.system('cls')
     stopwatch = StopWatch()
     stopwatch.start()
-    threading.Thread(target=hint_check, args=(stopwatch,), daemon=True).start()
+    threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
 
     while True:
         game_state = load_game()
