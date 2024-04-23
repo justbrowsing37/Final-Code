@@ -283,6 +283,8 @@ def eat(game_state, edible_items):
 
 
 
+
+
 def inv_check(game_state):
     if not game_state.player_inventory:
         print("Your inventory is empty...")
