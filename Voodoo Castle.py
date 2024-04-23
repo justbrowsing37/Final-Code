@@ -418,7 +418,9 @@ directions = {
 }
 
 
-def hint_timer(stopwatch, current_room):
+def hint_timer(stopwatch, game_state):
+    current_room = game_state.current_room
+
     while True:
         time.sleep(60)  # Check every minute
         elapsed_time = stopwatch.elapsedTime
@@ -429,7 +431,9 @@ def hint_timer(stopwatch, current_room):
             elif current_room == "Gallery":
                 print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
                 print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
-            # Add more elif blocks for other rooms
+            elif current_room == "Ballroom (Fireplace)":
+                print("Hey, looks like you havent been able to dance ya weeb")
+                print("You got here using west, go back using east!, ya virgin")
             else:
                 print("\nYou've been inactive for a while. Here's a general hint: ")
                 print("Try to explore different rooms and interact with objects to progress in the game.")
