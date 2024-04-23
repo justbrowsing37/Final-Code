@@ -534,6 +534,17 @@ def load_game():
 
 def main():
     os.system('cls')
+    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
+
+    if game == "y":
+        pass
+    elif game == "n":
+        pass
+    else:
+        pass
+    
+    os.system('cls')
+
     stopwatch = StopWatch()
     stopwatch.start()
 
