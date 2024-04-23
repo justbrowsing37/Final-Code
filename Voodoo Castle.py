@@ -1,5 +1,7 @@
-import time, os, sys, random, json, threading
-
+import time, os, sys, random, json
+#This project took me months, Hope you enjoy!
+#
+#:)
 os.system('cls')
 
 
@@ -61,6 +63,13 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
+
+
+
+
+
+
+
 
 
 ####################   UI STUFF    ###################
@@ -292,6 +301,8 @@ def inv_check(game_state):
             print(f"- {item}")
 
 
+def help():
+    print("Not much more help i can give you")
 
 
 
@@ -383,7 +394,7 @@ game_map = {
                        "\nReally Staring to look more like a castle rather than a chapel",
         "Exits": {"west": "Torture Chamber"},
         "Items": ["Handcuffs"],
-        "Objects": ["Uniform"]
+        "Objects": []
     }
 }
 
@@ -407,7 +418,7 @@ moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "
 items = []
 usable_items = []
 edible_items = []
-objects = ["coffin", "window", "Basket", "chemicals", "gate", "Skeleton", "bones", "Uniform"]
+objects = []
 
 
 directions = {
@@ -418,18 +429,27 @@ directions = {
 }
 
 
-def hint_timer(stopwatch, current_room):
+def hint_timer(stopwatch, game_state):
+    current_room = game_state.current_room
+
     while True:
         time.sleep(60)  # Check every minute
         elapsed_time = stopwatch.elapsedTime
-        if elapsed_time >= 300:  # Display hint after 5 minutes of inactivity
+        if elapsed_time >= 120:  # Display hint after 5 minutes of inactivity
             if current_room == "Chapel":
                 print("\nYou've been inactive for a while in the Chapel. Here's a hint: ")
                 print("Try interacting with the coffin or exploring the exits to find new areas.")
             elif current_room == "Gallery":
                 print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
                 print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
-            # Add more elif blocks for other rooms
+                print("To do that, the command is 'open' and then just follow the prompt")
+            elif current_room == "Ballroom (Fireplace)":
+                print("Having fun dancing? ")
+                print("You got here using west, go back using east!, ya virgin")
+            elif current_room == "Tunnel":
+                print("Just leave the same way you came. 'move' then 'w'.")
+                print("You you are having troubles, just type 'quit', and reset the run :)")
+            #insert more elif statements :) Have fun
             else:
                 print("\nYou've been inactive for a while. Here's a general hint: ")
                 print("Try to explore different rooms and interact with objects to progress in the game.")
@@ -444,7 +464,7 @@ def map_check(game_state):
     current_room = game_state.current_room
 
     print(f"Your current room is {current_room}")
-    #←→↑↓«»
+  #←→↑↓«»
 
     game_map = {
         "Gallery": {"Exits": ["Chapel"]},
@@ -514,16 +534,30 @@ def load_game():
 
 def main():
     os.system('cls')
+    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
+
+    if game == "y":
+        pass
+    elif game == "n":
+        pass
+    else:
+        pass
+    
+    os.system('cls')
+
     stopwatch = StopWatch()
     stopwatch.start()
+<<<<<<< HEAD
     threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
+=======
+>>>>>>> a73284078ffce25728ca40ceffd16d8cf99b0d70
 
     while True:
         game_state = load_game()
         if game_state is None:
             game_state = GameState()
 
-        GameIntro()
+        print_instructions()
 
         while game_state.current_room:
             display_room_info(game_state.current_room, game_map)
@@ -536,6 +570,10 @@ def main():
             
             if command == "inventory":
                 inv_check(game_state)
+                continue
+            
+            elif command == "help":
+                help()
                 continue
 
             if command not in moves:
