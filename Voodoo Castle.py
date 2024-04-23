@@ -1,5 +1,7 @@
-import time, os, sys, random, json, threading
-
+import time, os, sys, random, json
+#This project took me months, Hope you enjoy!
+#
+#:)
 os.system('cls')
 
 
@@ -529,7 +531,6 @@ def main():
     os.system('cls')
     stopwatch = StopWatch()
     stopwatch.start()
-    threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
 
     while True:
         game_state = load_game()
@@ -564,3 +565,5 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
+
+main()
