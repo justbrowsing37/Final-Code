@@ -491,18 +491,18 @@ def map_check(game_state):
 
     # Define the map layout with room connections
     map_layout = [
-        "                                                       Compass:     ↑N↑",
-        "                   Gallery                                      « W [♦] E »",
-        "                      |                                             ↓S↓",
-        "Ballroom --------- Chapel ------- Tunnel",
-        "(Fireplace)           |           ",
-        "                      |            Repository -- Pantry -- Lab",
-        "                      |               |",
-        "Dungeon ---------- Stairs -------- Kitchen",
-        "   |                  |",
-        "Torture -- Armory     |",
-        "                      |",
-        "                    Room",
+        "                                                         Compass:     ↑N↑",
+        "                     Gallery                                      « W [♦] E »",
+        "                        |                                               ↓S↓",
+        "Ballroom ----------- Chapel --------- Tunnel",
+        "(Fireplace)             |           ",
+        "                        |              Repository -- Pantry -- Lab",
+        "                        |                 |",
+        "Dungeon ------------ Stairs ---------- Kitchen",
+        "   |                    |",
+        "Torture -- Armory       |",
+        "                        |",
+        "                      Room",
         "",
         ""
     ]
@@ -536,11 +536,12 @@ def load_game():
 
 def main():
     os.system('cls')
-    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
     stopwatch = StopWatch()
     stopwatch.start()
     while True:
+        game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
+
         if game == "y":
             game_state = load_game()
             if game_state is None:
