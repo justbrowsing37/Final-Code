@@ -584,7 +584,7 @@ def main():
                 continue
 
             if command == "take":
-                Take(game_state)
+                Take(game_state, game_map)
                 separation()
             elif command == "move":
                 game_state = move(game_state, game_map,  directions)
