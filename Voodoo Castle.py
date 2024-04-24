@@ -316,7 +316,7 @@ game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
                        "\n             There is a coffin in front of me.",
-        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroom", "south": "Stairs"},
+        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroomn", "south": "Stairs"},
         "Items": [],
         "Objects": ["coffin"]
     },
@@ -521,10 +521,10 @@ def load_game():
 
 def main():
     os.system('cls')
-
+    quit_var = True
     stopwatch = StopWatch()
     stopwatch.start()
-    while True:
+    while quit_var:
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
         if game == "y":
@@ -560,6 +560,7 @@ def main():
             elif command == "quit":
                 if quit():
                     print("Quitting the game...")
+                    quit_var = False
                     break  # Exit the game loop
                 else:
                     print("Resuming the game...")
