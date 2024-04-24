@@ -274,6 +274,17 @@ def use(game_state, usable_items):
 
 
 
+def quit():
+    while True:        
+        quit_game = input("Are you sure you want to quit the game? [y/n] \n\n>> ").strip().lower()
+        if quit_game == "y":
+            return True
+        elif quit_game == "n":
+            return False
+        else:
+            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")
+        
+
 
 def eat(game_state, edible_items):
     item_name = input("What would you lke to eat?")
@@ -414,7 +425,7 @@ Torture --- Armory  |
                    Room
 '''
 
-moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inventory", "map"]
+moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inventory", "map", "quit"]
 items = []
 usable_items = []
 edible_items = []
@@ -566,17 +577,24 @@ def main():
             if command == "inventory":
                 inv_check(game_state)
                 continue
-            
             elif command == "help":
                 help()
                 continue
-
+            elif command == "quit":
+                if quit():
+                    save_game(game_state)
+                    print("Quitting the game...")
+                    time.sleep(3)
+                    break
+                else:
+                    save_game(game_state)
+                    print("Back to the game...")
+                    continue
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
                 continue
-
-            if command == "take":
+            elif command == "take":
                 Take(game_state, game_map)
                 separation()
             elif command == "move":
