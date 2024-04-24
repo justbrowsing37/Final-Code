@@ -1,4 +1,4 @@
-import time, os, sys, random, json, pygame
+import time, os, sys, random, json
 #This project took me months, Hope you enjoy!
 #
 #:)
@@ -591,3 +591,5 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
+
+main()
