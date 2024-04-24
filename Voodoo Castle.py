@@ -530,10 +530,10 @@ def main():
 
         if game == "y":
             game_state = load_game()
-            if game_state is None:
-                print("No previous game found. Starting a new game.")
-                time.sleep(3)
-                game_state = GameState()
+        if game_state is None:
+            print("No previous game found. Starting a new game.")
+            time.sleep(3)
+            game_state = GameState()
         elif game == "n":
             game_state = GameState()
         else:
