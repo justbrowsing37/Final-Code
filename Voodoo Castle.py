@@ -540,26 +540,23 @@ def load_game():
 
 def main():
     os.system('cls')
-
-    game = input("Would you like to load a previous game? [y/n]\n\n>> ").strip().lower()
-    if game == "y":
-        load_game()
-    elif game == "n":
-        print('Starting new game...')
-        time.sleep(3)
-        pass
-    else:
-        print(f"'{game}' is not a viable answer. Please enter 'y' or 'n'")
+    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
     stopwatch = StopWatch()
     stopwatch.start()
     while True:
-        game_state = load_game()
-        if game_state is None:
+        if game == "y":
+            game_state = load_game()
+            if game_state is None:
+                print("No previous game found. Starting a new game.")
+                game_state = GameState()
+        elif game == "n":
             game_state = GameState()
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+            continue
 
         os.system('cls')
-
         print_instructions()
 
         while game_state.current_room:
@@ -570,7 +567,7 @@ def main():
                 save_game(game_state)
                 print("Game saved.")
                 continue
-            
+
             if command == "inventory":
                 inv_check(game_state)
                 continue
@@ -579,14 +576,12 @@ def main():
                 continue
             elif command == "quit":
                 if quit():
-                    save_game(game_state)
                     print("Quitting the game...")
-                    time.sleep(3)
-                    break
+                    break  # Exit the game loop
                 else:
-                    save_game(game_state)
-                    print("Back to the game...")
-                    continue
+                    print("Resuming the game...")
+                    continue  # Continue the game loop
+
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
