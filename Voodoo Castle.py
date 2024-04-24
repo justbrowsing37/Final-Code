@@ -521,10 +521,11 @@ def load_game():
 
 def main():
     os.system('cls')
-    quit_var = True
+    main_loop = True
+
     stopwatch = StopWatch()
     stopwatch.start()
-    while quit_var:
+    while main_loop:
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
         if game == "y":
@@ -559,8 +560,9 @@ def main():
                 continue
             elif command == "quit":
                 if quit():
-                    print("Quitting the game...")
-                    quit_var = False
+                    os.system('cls')
+                    print("Quitting the game... \n\n\nGoodbye! \n\n")
+                    main_loop = False
                     break  # Exit the game loop
                 else:
                     print("Resuming the game...")
