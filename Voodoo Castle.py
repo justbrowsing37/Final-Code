@@ -529,10 +529,6 @@ def load_game():
         with open("game_state.json", "r") as file:
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
-        print("\n\nUnable to load game...")
-        time.sleep(1)
-        print("Loading new game...")
-        time.sleep(3)
         return None
 
 
@@ -549,6 +545,7 @@ def main():
             game_state = load_game()
             if game_state is None:
                 print("No previous game found. Starting a new game.")
+                time.sleep(3)
                 game_state = GameState()
         elif game == "n":
             game_state = GameState()
