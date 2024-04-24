@@ -592,4 +592,3 @@ def main():
             elif command == "map":
                 map_check(game_state)
 
-main()
