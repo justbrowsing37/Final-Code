@@ -338,27 +338,27 @@ game_map = {
     "Stairs": {
         "Description": " I am in a dingy looking stairwell."
                        "\n             Broken glass is everywhere, looks like an explosion happened?",
-        "Exits": {"north": "Chapel", "east": "Kettle Room", "south": "Room", "west": "Dungeon"},
+        "Exits": {"north": "Chapel", "east": "Kitchen", "south": "Room", "west": "Dungeon"},
         "Items": ["broken glass"],
         "Objects": []
     },
     "Room": {
         "Description": "\nYou are in a plain, nondescript room.",
-        "Exits": {"north": "Armory"},
+        "Exits": {"north": "Stairs"},
         "Items": [],
         "Objects": []
     },
-    "Kettle Room": {
+    "Kitchen": {
         "Description": "\nThis looks like their version of a kitchen."
                        "\nLost of pots, pans, and kettles are in the sink...",
-        "Exits": {"north": "Head Room", "west": "Stairs"},
+        "Exits": {"north": "Repository", "west": "Stairs"},
         "Items": [],
         "Objects": []
     },
-    "Head Room": {
+    "Repository": {
         "Description": "\nIm standing in the room filled with animal heads."
                        "\nIt looks like these guys loved to hunt...",
-        "Exits": {"east": "Pantry", "south": "Kettle Room"},
+        "Exits": {"east": "Pantry", "south": "Kitchen"},
         "Items": [],
         "Objects": []
     },
@@ -542,12 +542,23 @@ def main():
         pass
     else:
         pass
-    
+
     os.system('cls')
 
+    print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ \n\n')
+    time.sleep(7)
+
+    os.system('cls')
+
+
+
     stopwatch = StopWatch()
-    stopwatch.start
-    
+    stopwatch.start()
+<<<<<<< HEAD
+    threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
+=======
+>>>>>>> a73284078ffce25728ca40ceffd16d8cf99b0d70
+
     while True:
         game_state = load_game()
         if game_state is None:
@@ -578,7 +589,7 @@ def main():
                 continue
 
             if command == "take":
-                game_state = Take(game_state)
+                Take(game_state, game_map)
                 separation()
             elif command == "move":
                 game_state = move(game_state, game_map,  directions)
