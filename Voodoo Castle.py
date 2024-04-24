@@ -545,15 +545,15 @@ def main():
 
     os.system('cls')
 
-    print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ ')
+    print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ \n\n')
     time.sleep(7)
 
     os.system('cls')
 
+
+
     stopwatch = StopWatch()
     stopwatch.start()
-
-
     while True:
         game_state = load_game()
         if game_state is None:
@@ -592,3 +592,4 @@ def main():
             elif command == "map":
                 map_check(game_state)
 
+main()
