@@ -554,11 +554,6 @@ def main():
 
     stopwatch = StopWatch()
     stopwatch.start()
-<<<<<<< HEAD
-    threading.Thread(target=hint_timer, args=(stopwatch,), daemon=True).start()
-=======
->>>>>>> a73284078ffce25728ca40ceffd16d8cf99b0d70
-
     while True:
         game_state = load_game()
         if game_state is None:
