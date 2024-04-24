@@ -316,7 +316,7 @@ game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
                        "\n             There is a coffin in front of me.",
-        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroom (Fireplace)", "south": "Stairs"},
+        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroom", "south": "Stairs"},
         "Items": [],
         "Objects": ["coffin"]
     },
@@ -327,7 +327,7 @@ game_map = {
         "Items": [],
         "Objects": ["window"]
     },
-    "Ballroom (Fireplace)": {
+    "Ballroom": {
         "Description": " I am standing in the grand ballroom..."
                        "\n             Sure will you had a girl to dance with don't you?",
         "Exits": {"east": "Chapel"},
@@ -410,7 +410,7 @@ View of the game map:
                  Gallery
 		  	        |
 Ballroom -------- Chapel ----- Tunnel
-(Fireplace)         |
+                    |
 		  	        |              Repository -- Pantry -- Lab
 		            |                 |
 Dungeon --------- Stairs --------- Kitchen
@@ -472,30 +472,15 @@ def map_check(game_state):
     print(f"Your current room is {current_room}")
   #←→↑↓«»
 
-    game_map = {
-        "Gallery": {"Exits": ["Chapel"]},
-        "Chapel": {"Exits": ["Gallery", "Tunnel", "Head Room"]},
-        "Tunnel": {"Exits": ["Chapel"]},
-        "Repository": {"Exits": ["Chapel", "Pot Room", "Lab"]},
-        "Pantry": {"Exits": ["Head Room"]},
-        "Lab": {"Exits": ["Head Room"]},
-        "Dungeon": {"Exits": ["Stairs", "Torture Chamber"]},
-        "Stairs": {"Exits": ["Dungeon", "Kettle Room"]},
-        "Kitchen": {"Exits": ["Stairs"]},
-        "Torture Chamber": {"Exits": ["Dungeon", "Armory"]},
-        "Armory": {"Exits": ["Torture Chamber"]},
-        "Room": {"Exits": []}
-    }
-
 
 
     # Define the map layout with room connections
     map_layout = [
         "                                                         Compass:     ↑N↑",
         "                     Gallery                                      « W [♦] E »",
-        "                        |                                               ↓S↓",
+        "                        |                                             ↓S↓",
         "Ballroom ----------- Chapel --------- Tunnel",
-        "(Fireplace)             |           ",
+        "                        |           ",
         "                        |              Repository -- Pantry -- Lab",
         "                        |                 |",
         "Dungeon ------------ Stairs ---------- Kitchen",
