@@ -1,4 +1,4 @@
-import time, os, sys, random, json
+import time, os, sys, random, json, pygame 
 #This project took me months, Hope you enjoy!
 #
 #:)
