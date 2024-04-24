@@ -547,7 +547,7 @@ def main():
 
     stopwatch = StopWatch()
     stopwatch.start()
-    
+
 
     while True:
         game_state = load_game()
