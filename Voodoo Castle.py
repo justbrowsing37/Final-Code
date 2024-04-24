@@ -1,9 +1,4 @@
 import time, os, sys, random, json
-#This project took me months, Hope you enjoy!
-#
-#:)
-os.system('cls')
-
 
 
 ####################    CLASSES    ###################
@@ -545,14 +540,16 @@ def load_game():
 
 def main():
     os.system('cls')
-    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
+    game = input("Would you like to load a previous game? [y/n]\n\n>> ").strip().lower()
     if game == "y":
-        pass
+        load_game()
     elif game == "n":
+        print('Starting new game...')
+        time.sleep(3)
         pass
     else:
-        pass
+        print(f"'{game}' is not a viable answer. Please enter 'y' or 'n'")
 
     stopwatch = StopWatch()
     stopwatch.start()
