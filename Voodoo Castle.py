@@ -502,7 +502,7 @@ def map_check(game_state):
     ]
 
     # Print the map with the current room highlighted in green
-    print("Game Map:")
+    print((Color.BOLD + Color.BLUE + "Game Map [Green text is the room you are in]:" + Color.END))
     for room_line in map_layout:
         line = ""
         for room_name in room_line.split(" "):
@@ -511,10 +511,6 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
-
-
-
-
 
 
 def save_game(game_state):
@@ -527,6 +523,10 @@ def load_game():
         with open("game_state.json", "r") as file:
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
+        print("\n\nUnable to load game...")
+        time.sleep(1)
+        print("Loading new game...")
+        time.sleep(3)
         return None
 
 
@@ -543,21 +543,14 @@ def main():
     else:
         pass
 
-    os.system('cls')
-
-    print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ \n\n')
-    time.sleep(7)
-
-    os.system('cls')
-
-
-
     stopwatch = StopWatch()
     stopwatch.start()
     while True:
         game_state = load_game()
         if game_state is None:
             game_state = GameState()
+
+        os.system('cls')
 
         print_instructions()
 
@@ -591,5 +584,9 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
+
+            stopwatch.reset()
+            stopwatch.start()
+
 
 main()
