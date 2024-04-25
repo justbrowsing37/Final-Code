@@ -309,7 +309,31 @@ def inv_check(game_state):
 
 
 def help():
-    print("Not much more help i can give you")
+    category = input("\nWhat do you need help with? \nCommands, Story, Current Moves \n\n>>").strip().lower()
+    
+    if category == "commands":
+        print(
+            "Here is the list of commands: ",
+            "\n\n'move'      move is used to navigate the playing area",
+            "\n            and is the first thing you type when trying to move around",
+            "\n\n'n,e,s,w'   these are the directions that the player [you] can move in",
+            "\n            only type one of them when asked which way you want to go",
+            "\n\n'take'      take is what lets you pick things up and  put them into your",
+            "\n            inventory. but it only works if there is anything to pick up",
+            "\n\n'use'       the use command is extremely situational, so far i haven't added",
+            "\n            anything that needs this command, but ill get there, give me some time",
+            "\n\n'inv'       this command is to check your inventory. which you should have",
+            "\n            figured out by now, but if not, there ya go champ! type inv to use it",
+            "\n\n'map'       map allows you to see not only what room you are in, but also",
+            "\n            to see the entire playable area, along with their connections",
+            "\n\n'quit'      this should be pretty self explanatory, but if you somehow",
+            "\n            don't know what quit does, it just exits the game for you",
+
+            "\n\n               Thats all the commands i have implemented for now,",
+            "\n                    but more are on the way dont worry about it!",
+        )
+    else:
+        print("IM WORKING ON IT")
 
 
 
@@ -317,8 +341,8 @@ game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
                        "\n             There is a coffin in front of me.",
-        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroon", "south": "Stairs"},
-        "Items": [],
+        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroom", "south": "Stairs"},
+        "Items": ["ring"],
         "Objects": ["coffin"]
     },
     "Gallery": {
@@ -386,11 +410,11 @@ game_map = {
     "Dungeon": {
         "Description": "\nThe dungeon seems to be a bit dusty,"
                        "\nThere are skeletons on the ground...",
-        "Exits": {"east": "Stairs", "south": "Torture Chamber"},
+        "Exits": {"east": "Stairs", "south": "Torture"},
         "Items": ["metal chain", "key"],
         "Objects": ["gate"]
     },
-    "Torture Chamber": {
+    "Torture": {
         "Description": "\nOne of the worst rooms in the whole castle",
         "Exits": {"north": "Dungeon", "east": "Armory"},
         "Items": ["bones", "Sword"],
@@ -421,11 +445,11 @@ Torture --- Armory  |
                    Room
 '''
 
-moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inventory", "map", "quit"]
-items = []
-usable_items = []
+moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inv", "map", "quit"]
+items = ["Handcuffs", "ring", "bones", "Sword", "metal chain", "key", "Meat", "Bread", "broken glass", "bloody knife"]
+usable_items = ["ring"]
 edible_items = []
-objects = []
+objects = ["coffin", "window", "Basket", "chemicals", "gate", "Skeleton", "Bones"]
 
 
 directions = {
@@ -528,6 +552,7 @@ def main():
     stopwatch = StopWatch()
     stopwatch.start()
     while main_loop:
+        #this is all pregame stuff
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
         if game == "y":
@@ -554,7 +579,7 @@ def main():
                 print("Game saved.")
                 continue
 
-            if command == "inventory":
+            if command == "inv":
                 inv_check(game_state)
                 continue
             elif command == "help":
