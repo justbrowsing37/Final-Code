@@ -527,6 +527,8 @@ def load_game():
         with open("game_state.json", "r") as file:
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
+        print("There is no game to load")
+        time.sleep(4)
         return None
 
 
@@ -537,19 +539,17 @@ def main():
     game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
     if game == "y":
-        pass
+        load_game()
     elif game == "n":
         pass
     else:
-        pass
-
+        return
     os.system('cls')
 
     print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ \n\n')
     time.sleep(7)
 
     os.system('cls')
-
 
 
     stopwatch = StopWatch()
