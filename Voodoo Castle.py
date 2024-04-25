@@ -317,7 +317,7 @@ game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
                        "\n             There is a coffin in front of me.",
-        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroomn", "south": "Stairs"},
+        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroon", "south": "Stairs"},
         "Items": [],
         "Objects": ["coffin"]
     },
@@ -513,10 +513,9 @@ def save_game(game_state):
 def load_game():
     try:
         with open("game_state.json", "r") as file:
+            ("Loading previous game...")
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
-        print("There is no game to load")
-        time.sleep(4)
         return None
 
 
@@ -524,25 +523,8 @@ def load_game():
 
 def main():
     os.system('cls')
-<<<<<<< HEAD
-    game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
+    main_loop = True
 
-    if game == "y":
-        load_game()
-    elif game == "n":
-        pass
-    else:
-        return
-    os.system('cls')
-
-    print('█ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ \n\n')
-    time.sleep(7)
-
-    os.system('cls')
-
-
-=======
->>>>>>> 5b6ab19a2a46c566f37eb668c57faf74b92f6c0e
     stopwatch = StopWatch()
     stopwatch.start()
     while main_loop:
@@ -553,7 +535,7 @@ def main():
             if game_state is None:
                 print("No previous game found. Starting a new game.")
                 time.sleep(3)
-            game_state = GameState()
+                game_state = GameState()
         elif game == "n":
             game_state = GameState()
         else:
