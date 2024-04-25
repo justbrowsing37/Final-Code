@@ -307,6 +307,7 @@ def inv_check(game_state):
             print(f"- {item}")
 
 
+
 def help():
     print("Not much more help i can give you")
 
@@ -522,6 +523,17 @@ def load_game():
 def main():
     os.system('cls')
     main_loop = True
+
+    if game == "y":
+        gmae_state = load_game()
+        pass
+    elif game == "n":
+        game_state = GameState() 
+    else:
+        pass
+    time.sleep(7)
+
+    os.system('cls')
 
     stopwatch = StopWatch()
     stopwatch.start()
