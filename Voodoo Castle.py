@@ -1,9 +1,4 @@
 import time, os, sys, random, json
-#This project took me months, Hope you enjoy!
-#
-#:)
-os.system('cls')
-
 
 
 ####################    CLASSES    ###################
@@ -274,6 +269,17 @@ def use(game_state, usable_items):
 
 
 
+def quit():
+    while True:        
+        quit_game = input("Are you sure you want to quit the game? [y/n] \n\n>> ").strip().lower()
+        if quit_game == "y":
+            return True
+        elif quit_game == "n":
+            return False
+        else:
+            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")
+        
+
 
 def eat(game_state, edible_items):
     item_name = input("What would you lke to eat?")
@@ -301,6 +307,7 @@ def inv_check(game_state):
             print(f"- {item}")
 
 
+
 def help():
     print("Not much more help i can give you")
 
@@ -310,7 +317,7 @@ game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
                        "\n             There is a coffin in front of me.",
-        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroom (Fireplace)", "south": "Stairs"},
+        "Exits": {"north": "Gallery", "east": "Tunnel", "west": "Ballroomn", "south": "Stairs"},
         "Items": [],
         "Objects": ["coffin"]
     },
@@ -321,7 +328,7 @@ game_map = {
         "Items": [],
         "Objects": ["window"]
     },
-    "Ballroom (Fireplace)": {
+    "Ballroom": {
         "Description": " I am standing in the grand ballroom..."
                        "\n             Sure will you had a girl to dance with don't you?",
         "Exits": {"east": "Chapel"},
@@ -404,7 +411,7 @@ View of the game map:
                  Gallery
 		  	        |
 Ballroom -------- Chapel ----- Tunnel
-(Fireplace)         |
+                    |
 		  	        |              Repository -- Pantry -- Lab
 		            |                 |
 Dungeon --------- Stairs --------- Kitchen
@@ -414,7 +421,7 @@ Torture --- Armory  |
                    Room
 '''
 
-moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inventory", "map"]
+moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inventory", "map", "quit"]
 items = []
 usable_items = []
 edible_items = []
@@ -466,43 +473,28 @@ def map_check(game_state):
     print(f"Your current room is {current_room}")
   #←→↑↓«»
 
-    game_map = {
-        "Gallery": {"Exits": ["Chapel"]},
-        "Chapel": {"Exits": ["Gallery", "Tunnel", "Head Room"]},
-        "Tunnel": {"Exits": ["Chapel"]},
-        "Repository": {"Exits": ["Chapel", "Pot Room", "Lab"]},
-        "Pantry": {"Exits": ["Head Room"]},
-        "Lab": {"Exits": ["Head Room"]},
-        "Dungeon": {"Exits": ["Stairs", "Torture Chamber"]},
-        "Stairs": {"Exits": ["Dungeon", "Kettle Room"]},
-        "Kitchen": {"Exits": ["Stairs"]},
-        "Torture Chamber": {"Exits": ["Dungeon", "Armory"]},
-        "Armory": {"Exits": ["Torture Chamber"]},
-        "Room": {"Exits": []}
-    }
-
 
 
     # Define the map layout with room connections
     map_layout = [
-        "                                                       Compass:     ↑N↑",
-        "                   Gallery                                      « W [♦] E »",
-        "                      |                                             ↓S↓",
-        "Ballroom --------- Chapel ------- Tunnel",
-        "(Fireplace)           |           ",
-        "                      |            Repository -- Pantry -- Lab",
-        "                      |               |",
-        "Dungeon ---------- Stairs -------- Kitchen",
-        "   |                  |",
-        "Torture -- Armory     |",
-        "                      |",
-        "                    Room",
+        "                                                         Compass:     ↑N↑",
+        "                     Gallery                                      « W [♦] E »",
+        "                        |                                             ↓S↓",
+        "Ballroom ----------- Chapel --------- Tunnel",
+        "                        |           ",
+        "                        |              Repository -- Pantry -- Lab",
+        "                        |                 |",
+        "Dungeon ------------ Stairs ---------- Kitchen",
+        "   |                    |",
+        "Torture -- Armory       |",
+        "                        |",
+        "                      Room",
         "",
         ""
     ]
 
     # Print the map with the current room highlighted in green
-    print("Game Map:")
+    print((Color.BOLD + Color.BLUE + "Game Map [Green text is the room you are in]:" + Color.END))
     for room_line in map_layout:
         line = ""
         for room_name in room_line.split(" "):
@@ -511,10 +503,6 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
-
-
-
-
 
 
 def save_game(game_state):
@@ -536,6 +524,7 @@ def load_game():
 
 def main():
     os.system('cls')
+<<<<<<< HEAD
     game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
     if game == "y":
@@ -552,13 +541,26 @@ def main():
     os.system('cls')
 
 
+=======
+>>>>>>> 5b6ab19a2a46c566f37eb668c57faf74b92f6c0e
     stopwatch = StopWatch()
     stopwatch.start()
-    while True:
-        game_state = load_game()
-        if game_state is None:
-            game_state = GameState()
+    while main_loop:
+        game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
 
+        if game == "y":
+            game_state = load_game()
+            if game_state is None:
+                print("No previous game found. Starting a new game.")
+                time.sleep(3)
+            game_state = GameState()
+        elif game == "n":
+            game_state = GameState()
+        else:
+            print("Invalid input. Please enter 'y' or 'n'.")
+            continue
+
+        os.system('cls')
         print_instructions()
 
         while game_state.current_room:
@@ -569,21 +571,28 @@ def main():
                 save_game(game_state)
                 print("Game saved.")
                 continue
-            
+
             if command == "inventory":
                 inv_check(game_state)
                 continue
-            
             elif command == "help":
                 help()
                 continue
+            elif command == "quit":
+                if quit():
+                    os.system('cls')
+                    print("Quitting the game... \n\n\nGoodbye! \n\n")
+                    main_loop = False
+                    break  # Exit the game loop
+                else:
+                    print("Resuming the game...")
+                    continue  # Continue the game loop
 
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
                 continue
-
-            if command == "take":
+            elif command == "take":
                 Take(game_state, game_map)
                 separation()
             elif command == "move":
@@ -591,5 +600,9 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
+
+            stopwatch.reset()
+            stopwatch.start()
+
 
 main()
