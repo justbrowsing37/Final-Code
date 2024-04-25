@@ -33,12 +33,10 @@ class StopWatch:
         if not self.isRunning:
             self.startTime = time.time()
             self.isRunning = True
-
     def stop(self):
         if self.isRunning:
             self.elapsedTime = time.time() - self.startTime
             self.isRunning = False
-            
     def reset(self):
         self.elapsedTime = 0
         self.isRunning = False
@@ -237,6 +235,7 @@ def help():
         )
     else:
         print("IM WORKING ON IT")
+
 game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
@@ -473,7 +472,6 @@ def main():
                     print("Resuming the game...")
                     continue  # Continue the game loop
 
-                    #600 lines of code (:O)
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
