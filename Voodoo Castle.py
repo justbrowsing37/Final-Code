@@ -558,19 +558,22 @@ def main():
         if game == "y":
             game_state = load_game()
             if game_state is None:
-                print("No previous game found. Starting a new game.")
+                print("No previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
+                os.system('cls')
+                print_instructions()
         elif game == "n":
             game_state = GameState()
+            os.system('cls')
+            print_instructions()
         else:
             print("Invalid input. Please enter 'y' or 'n'.")
             continue
 
-        os.system('cls')
-        print_instructions()
 
         while game_state.current_room:
+            
             display_room_info(game_state.current_room, game_map)
             command = input("\nWhat would you like to do?: ").strip().lower()
 
