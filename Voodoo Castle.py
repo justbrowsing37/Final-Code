@@ -546,6 +546,8 @@ def load_game():
 
 
 def main():
+    GameIntro()
+
     os.system('cls')
     main_loop = True
 
@@ -597,7 +599,7 @@ def main():
                 else:
                     print("Resuming the game...")
                     continue  # Continue the game loop
-
+                    #600 lines of code (:O)
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
