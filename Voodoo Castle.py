@@ -522,19 +522,6 @@ def load_game():
 
 def main():
     os.system('cls')
-    main_loop = True
-
-    if game == "y":
-        gmae_state = load_game()
-        pass
-    elif game == "n":
-        game_state = GameState() 
-    else:
-        pass
-    time.sleep(7)
-
-    os.system('cls')
-
     stopwatch = StopWatch()
     stopwatch.start()
     while main_loop:
@@ -542,9 +529,9 @@ def main():
 
         if game == "y":
             game_state = load_game()
-        if game_state is None:
-            print("No previous game found. Starting a new game.")
-            time.sleep(3)
+            if game_state is None:
+                print("No previous game found. Starting a new game.")
+                time.sleep(3)
             game_state = GameState()
         elif game == "n":
             game_state = GameState()
