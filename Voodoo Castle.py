@@ -333,6 +333,7 @@ game_map = {
         "Objects": []
     }
 }
+
 '''
 View of the game map:
                  Gallery
@@ -424,7 +425,7 @@ def map_check(game_state):
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
-        
+
 def load_game():
     try:
         with open("game_state.json", "r") as file:
