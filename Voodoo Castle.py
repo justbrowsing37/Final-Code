@@ -1,4 +1,6 @@
 import time, os, sys, random, json
+
+
 ####################    CLASSES    ###################
 class Color:
     PURPLE = '\033[95m'
@@ -12,6 +14,8 @@ class Color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
     ITALICS = '\033[3m'
+
+
 class GameState:
     def __init__(self, current_room=None, player_inventory=None):
         self.current_room = current_room if current_room else "Chapel"  # Start in the Chapel by default
@@ -24,6 +28,8 @@ class GameState:
     @classmethod
     def from_dict(cls, state_dict):
         return cls(state_dict["current_room"], state_dict["player_inventory"])
+    
+
 class StopWatch:
     def __init__(self):
         self.startTime = None
@@ -45,6 +51,8 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
+
+
 ####################   UI STUFF    ###################
 signatures = [
     "- Professional Moron",
@@ -62,11 +70,15 @@ signatures = [
     "- Gilberto Raymond and Team",
     "- Max Verstappen"
 ]
+
+
 random_sign = random.choice(signatures)
 def GameIntro():
     show_bar()
     os.system('cls')
     print_instructions()
+
+
 def progress_bar(iteration, total, bar_length=60):
     percent = "{0:.3f}".format(100 * (iteration / float(total)))
     filled_length = int(bar_length * iteration // total)
@@ -80,18 +92,21 @@ def progress_bar(iteration, total, bar_length=60):
         time.sleep(0.2)
     else:
         time.sleep(0.5)
+
+
 def clear_bar():
     print('\n')
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
+
+
 def show_bar():
-    Message()
-    time.sleep(2)
-    print("\nInitializing....")
+    os.system('cls')
+    print("Initializing....")
     time.sleep(0.5)
-    total_iterations = 50
+    total_iterations = 34
     for i in range(total_iterations + 1):
         progress_bar(i, total_iterations)
     time.sleep(1.5)
@@ -105,7 +120,7 @@ def show_bar():
     clear_bar()
     print("\nPreparing output...")
     time.sleep(0.5)
-    total_iterations = 137
+    total_iterations = 145
     for i in range(total_iterations + 1):
         progress_bar(i, total_iterations)
     time.sleep(0.5)
@@ -116,22 +131,22 @@ def show_bar():
     print((Color.BOLD + Color.UNDERLINE + "Please wait..." + Color.END))
     time.sleep(5)
     os.system('cls')
-def Message():
-    print("\nThe following game is " + (
-            Color.BOLD + '  𝘊 𝘈 𝘚 𝘌    𝘚 𝘌 𝘕 𝘚 𝘐 𝘛 𝘐 𝘝 𝘌' + Color.END) + "\n        (im working on it... dont judge me)")
-    print(f"\n\nThis project took me months to make... I hope you enjoy!\n     {random_sign}")
-    print("\n\n" + "↓↓" + (
-            Color.BOLD + Color.UNDERLINE + 'PLEASE WAIT FOR INSTRUCTIONS BELOW... DO NOT TYPE' + Color.END) + "↓↓")
+
+
 def print_instructions():
     print((Color.BOLD + "Welcome to VOODOO CASTLE!" + Color.END).center(108))
     print("\n                  Welcome player to my wonderful creation! Just know that this is\n                  a test module and things in here are all subject to change. But\n                  don't worry too much. Since I am a very crazy person and I am \n                  always looking for new ways to improve my game! So if you have \n                  any ideas for the game, Be sure to let me know! Anyways, some \n                  commands are |'move', 'take', and 'use'| Have fun! - Bhanu S. :)")
     print("               ---------------------------------------------------------------------")
     print("\n")
+
+
 def separation():
     linebreaks = (
             Color.BOLD + '______________________________________________________________________________________________' + Color.END)
     linebreaks_ = (
             Color.UNDERLINE + '\n║                                                                                            ║' + Color.END)
+    
+
     print(linebreaks, linebreaks_)
 ####################   GAME PLAY    ###################
 def display_room_info(current_room, game_map):
@@ -425,6 +440,7 @@ def map_check(game_state):
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
+        
 
 def load_game():
     try:
@@ -433,10 +449,9 @@ def load_game():
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
         return None
-
+    
 
 def main():
-    GameIntro()
 
     os.system('cls')
     main_loop = True
@@ -447,13 +462,14 @@ def main():
         #this is all pregame stuff
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
         if game == "y":
+            os.system('cls')
             game_state = load_game()
             if game_state is None:
                 print("No previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
                 os.system('cls')
-                print_instructions()
+                GameIntro()
         elif game == "n":
             game_state = GameState()
             os.system('cls')
@@ -462,7 +478,6 @@ def main():
             print("Invalid input. Please enter 'y' or 'n'.")
             continue
         while game_state.current_room:
-            
             display_room_info(game_state.current_room, game_map)
             command = input("\nWhat would you like to do?: ").strip().lower()
             if command == "save":
@@ -497,6 +512,9 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
+            elif command == "use":
+                use(game_state, usable_items)
+                separation()
             stopwatch.reset()
             stopwatch.start()
 main()
