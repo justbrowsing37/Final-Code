@@ -141,6 +141,7 @@ def display_room_info(current_room, game_map):
     print("Exits:", ", ".join(room_info["Exits"]))
     print("Items in the room:", ", ".join(room_info["Items"]))
     print("Objects in the room:", ", ".join(room_info["Objects"]))
+
 def Take(game_state, game_map):
     current_room_info = game_map[game_state.current_room]
     item_name = input("Which item would you like to pick up? ").strip().lower()
@@ -152,6 +153,7 @@ def Take(game_state, game_map):
     else:
         print("There is no such item in the room.")
     return game_state
+
 def move(game_state, game_map, directions):
     current_room_state = game_state.current_room
     current_room_info = game_map[current_room_state]
@@ -169,6 +171,7 @@ def move(game_state, game_map, directions):
     else:
         print("Invalid move command.")
     return game_state
+
 def use(game_state, usable_items):
     item_name = input("What would you like to use?: ")
     if item_name in game_state.player_inventory and item_name in  usable_items:
@@ -181,6 +184,7 @@ def use(game_state, usable_items):
         print("You can't use that item.")
     else:
         print("That item doesn't exist.")
+
 def quit():
     while True:        
         quit_game = input("Are you sure you want to quit the game? [y/n] \n\n>> ").strip().lower()
@@ -203,6 +207,7 @@ def eat(game_state, edible_items):
         print("You cant eat this item. Stupid.")
     else:
         print("That item doesn't exist.")
+
 def inv_check(game_state):
     if not game_state.player_inventory:
         print("Your inventory is empty...")
@@ -210,6 +215,7 @@ def inv_check(game_state):
         print("Your inventory: ")
         for item in game_state.player_inventory:
             print(f"- {item}")
+
 def help():
     category = input("\nWhat do you need help with? \nCommands, Story, Current Moves \n\n>>").strip().lower()
     
@@ -352,6 +358,7 @@ directions = {
     's': 'south',
     'w': 'west',
 }
+
 def hint_timer(stopwatch, game_state):
     current_room = game_state.current_room
     while True:
@@ -378,6 +385,8 @@ def hint_timer(stopwatch, game_state):
                 print("You can use commands like 'take', 'move', 'use', etc.")
                 print("Have fun exploring!")
             break
+
+
 ############# Testing cases #############
 def map_check(game_state):
     current_room = game_state.current_room
@@ -410,9 +419,12 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
+
+
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
+        
 def load_game():
     try:
         with open("game_state.json", "r") as file:
