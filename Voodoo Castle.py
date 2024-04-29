@@ -363,6 +363,9 @@ Torture --- Armory  |
                     |
                    Room
 '''
+
+
+
 moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inv", "map", "quit"]
 items = ["Handcuffs", "ring", "bones", "Sword", "metal chain", "key", "Meat", "Bread", "broken glass", "bloody knife"]
 usable_items = ["ring"]
