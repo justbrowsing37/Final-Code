@@ -397,7 +397,8 @@ def hint_timer(stopwatch, game_state):
             elif current_room == "Tunnel":
                 print("Just leave the same way you came. 'move' then 'w'.")
                 print("You you are having troubles, just type 'quit', and reset the run :)")
-            #insert more elif statements :) Have fun
+            elif current_room == "Stairs":
+                print("Tip: Use the move command to move around, or use the map command to see where you are!")
             else:
                 print("\nYou've been inactive for a while. Here's a general hint: ")
                 print("Try to explore different rooms and interact with objects to progress in the game.")
@@ -471,7 +472,6 @@ def main():
                 print("No previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
-                os.system('cls')
                 GameIntro()
         elif game == "n":
             game_state = GameState()
