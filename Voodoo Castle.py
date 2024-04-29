@@ -196,8 +196,7 @@ def quit():
         elif quit_game == "n":
             return False
         else:
-            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")
-        
+            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")      
 def eat(game_state, edible_items):
     item_name = input("What would you lke to eat?")
     if item_name in game_state.player_inventory and item_name in edible_items:

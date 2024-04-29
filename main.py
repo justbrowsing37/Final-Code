@@ -1,9 +1,9 @@
 import os
 import time
 from classes import GameState, StopWatch
-from ui import GameIntro
-from gameplay import display_room_info, Take, move, quit, inv_check, help, hint_timer
-from game_map import game_map
+from ui import GameIntro, print_instructions, load_game, save_game, separation
+from gameplay import display_room_info, Take, move, quit, inv_check, help, hint_timer, map_check
+from game_map import game_map, moves, directions
 
 
 def main():
