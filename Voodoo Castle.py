@@ -13,7 +13,6 @@ class Color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
     ITALICS = '\033[3m'
-
 class GameState:
     def __init__(self, current_room=None, player_inventory=None):
         self.current_room = current_room if current_room else "Chapel"  # Start in the Chapel by default
@@ -27,7 +26,6 @@ class GameState:
     @classmethod
     def from_dict(cls, state_dict):
         return cls(state_dict["current_room"], state_dict["player_inventory"])
-
 class StopWatch:
     def __init__(self):
         self.startTime = None
@@ -358,34 +356,6 @@ directions = {
     's': 'south',
     'w': 'west',
 }
-def hint_timer(stopwatch, game_state):
-    current_room = game_state.current_room
-    while True:
-        time.sleep(60)  # Check every minute
-        elapsed_time = stopwatch.elapsedTime
-        if elapsed_time >= 120:  # Display hint after 5 minutes of inactivity
-            if current_room == "Chapel":
-                print("\nYou've been inactive for a while in the Chapel. Here's a hint: ")
-                print("Try interacting with the coffin or exploring the exits to find new areas.")
-            elif current_room == "Gallery":
-                print("\nYou've been inactive for a while in the Gallery. Here's a hint: ")
-                print("Take a look through the window to admire the view or try to find your way back to the Chapel.")
-                print("To do that, the command is 'open' and then just follow the prompt")
-            elif current_room == "Ballroom (Fireplace)":
-                print("Having fun dancing? ")
-                print("You got here using west, go back using east!, ya virgin")
-            elif current_room == "Tunnel":
-                print("Just leave the same way you came. 'move' then 'w'.")
-                print("You you are having troubles, just type 'quit', and reset the run :)")
-            elif current_room == "Stairs":
-                print("[Insert text here]")
-                print("[Insert more text here]")
-            else:
-                print("\nYou've been inactive for a while. Here's a general hint: ")
-                print("Try to explore different rooms and interact with objects to progress in the game.")
-                print("You can use commands like 'take', 'move', 'use', etc.")
-                print("Have fun exploring!")
-            break
 
 ############# Testing cases #############
 def map_check(game_state):
