@@ -1,6 +1,5 @@
 import time, os, sys, random, json
 
-
 ####################    CLASSES    ###################
 class Color:
     PURPLE = '\033[95m'
@@ -15,7 +14,6 @@ class Color:
     END = '\033[0m'
     ITALICS = '\033[3m'
 
-
 class GameState:
     def __init__(self, current_room=None, player_inventory=None):
         self.current_room = current_room if current_room else "Chapel"  # Start in the Chapel by default
@@ -25,10 +23,10 @@ class GameState:
             "current_room": self.current_room,
             "player_inventory": self.player_inventory
         }
+    
     @classmethod
     def from_dict(cls, state_dict):
         return cls(state_dict["current_room"], state_dict["player_inventory"])
-    
 
 class StopWatch:
     def __init__(self):
@@ -71,14 +69,11 @@ signatures = [
     "- Max Verstappen"
 ]
 
-
 random_sign = random.choice(signatures)
 def GameIntro():
     show_bar()
     os.system('cls')
     print_instructions()
-
-
 def progress_bar(iteration, total, bar_length=60):
     percent = "{0:.3f}".format(100 * (iteration / float(total)))
     filled_length = int(bar_length * iteration // total)
@@ -92,21 +87,18 @@ def progress_bar(iteration, total, bar_length=60):
         time.sleep(0.2)
     else:
         time.sleep(0.5)
-
-
 def clear_bar():
     print('\n')
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
     print("\033[F\033[K", end="")
-
-
 def show_bar():
-    os.system('cls')
-    print("Initializing....")
+    Message()
+    time.sleep(2)
+    print("\nInitializing....")
     time.sleep(0.5)
-    total_iterations = 34
+    total_iterations = 50
     for i in range(total_iterations + 1):
         progress_bar(i, total_iterations)
     time.sleep(1.5)
@@ -120,7 +112,7 @@ def show_bar():
     clear_bar()
     print("\nPreparing output...")
     time.sleep(0.5)
-    total_iterations = 145
+    total_iterations = 137
     for i in range(total_iterations + 1):
         progress_bar(i, total_iterations)
     time.sleep(0.5)
@@ -131,22 +123,22 @@ def show_bar():
     print((Color.BOLD + Color.UNDERLINE + "Please wait..." + Color.END))
     time.sleep(5)
     os.system('cls')
-
-
+def Message():
+    print("\nThe following game is " + (
+            Color.BOLD + '  𝘊 𝘈 𝘚 𝘌    𝘚 𝘌 𝘕 𝘚 𝘐 𝘛 𝘐 𝘝 𝘌' + Color.END) + "\n        (im working on it... dont judge me)")
+    print(f"\n\nThis project took me months to make... I hope you enjoy!\n     {random_sign}")
+    print("\n\n" + "↓↓" + (
+            Color.BOLD + Color.UNDERLINE + 'PLEASE WAIT FOR INSTRUCTIONS BELOW... DO NOT TYPE' + Color.END) + "↓↓")
 def print_instructions():
     print((Color.BOLD + "Welcome to VOODOO CASTLE!" + Color.END).center(108))
     print("\n                  Welcome player to my wonderful creation! Just know that this is\n                  a test module and things in here are all subject to change. But\n                  don't worry too much. Since I am a very crazy person and I am \n                  always looking for new ways to improve my game! So if you have \n                  any ideas for the game, Be sure to let me know! Anyways, some \n                  commands are |'move', 'take', and 'use'| Have fun! - Bhanu S. :)")
     print("               ---------------------------------------------------------------------")
     print("\n")
-
-
 def separation():
     linebreaks = (
             Color.BOLD + '______________________________________________________________________________________________' + Color.END)
     linebreaks_ = (
             Color.UNDERLINE + '\n║                                                                                            ║' + Color.END)
-    
-
     print(linebreaks, linebreaks_)
 ####################   GAME PLAY    ###################
 def display_room_info(current_room, game_map):
@@ -156,7 +148,6 @@ def display_room_info(current_room, game_map):
     print("Exits:", ", ".join(room_info["Exits"]))
     print("Items in the room:", ", ".join(room_info["Items"]))
     print("Objects in the room:", ", ".join(room_info["Objects"]))
-
 def Take(game_state, game_map):
     current_room_info = game_map[game_state.current_room]
     item_name = input("Which item would you like to pick up? ").strip().lower()
@@ -168,7 +159,6 @@ def Take(game_state, game_map):
     else:
         print("There is no such item in the room.")
     return game_state
-
 def move(game_state, game_map, directions):
     current_room_state = game_state.current_room
     current_room_info = game_map[current_room_state]
@@ -186,7 +176,6 @@ def move(game_state, game_map, directions):
     else:
         print("Invalid move command.")
     return game_state
-
 def use(game_state, usable_items):
     item_name = input("What would you like to use?: ")
     if item_name in game_state.player_inventory and item_name in  usable_items:
@@ -199,7 +188,6 @@ def use(game_state, usable_items):
         print("You can't use that item.")
     else:
         print("That item doesn't exist.")
-
 def quit():
     while True:        
         quit_game = input("Are you sure you want to quit the game? [y/n] \n\n>> ").strip().lower()
@@ -208,8 +196,7 @@ def quit():
         elif quit_game == "n":
             return False
         else:
-            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")
-        
+            print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")      
 def eat(game_state, edible_items):
     item_name = input("What would you lke to eat?")
     if item_name in game_state.player_inventory and item_name in edible_items:
@@ -222,7 +209,6 @@ def eat(game_state, edible_items):
         print("You cant eat this item. Stupid.")
     else:
         print("That item doesn't exist.")
-
 def inv_check(game_state):
     if not game_state.player_inventory:
         print("Your inventory is empty...")
@@ -230,29 +216,28 @@ def inv_check(game_state):
         print("Your inventory: ")
         for item in game_state.player_inventory:
             print(f"- {item}")
-
 def help():
     category = input("\nWhat do you need help with? \nCommands, Story, Current Moves \n\n>>").strip().lower()
     
     if category == "commands":
         print(
             "Here is the list of commands: ",
-            "\n\n", (Color.BOLD + 'move' + Color.END), "      move is used to navigate the playing area",
+            "\n\n'move'      move is used to navigate the playing area",
             "\n            and is the first thing you type when trying to move around",
-            "\n\n", (Color.BOLD + 'n,e,s,w' + Color.END), "   these are the directions that the player [you] can move in",
+            "\n\n'n,e,s,w'   these are the directions that the player [you] can move in",
             "\n            only type one of them when asked which way you want to go",
             "\n\n'take'      take is what lets you pick things up and  put them into your",
             "\n            inventory. but it only works if there is anything to pick up",
             "\n\n'use'       the use command is extremely situational, so far i haven't added",
             "\n            anything that needs this command, but ill get there, give me some time",
-            "\n\n", (Color.BOLD + 'inv' + Color.END), "       this command is to check your inventory. which you should have",
+            "\n\n'inv'       this command is to check your inventory. which you should have",
             "\n            figured out by now, but if not, there ya go champ! type inv to use it",
-            "\n\n", (Color.BOLD + 'move' + Color.END), "        allows you to see not only what room you are in, but also",
+            "\n\n'map'       map allows you to see not only what room you are in, but also",
             "\n            to see the entire playable area, along with their connections",
             "\n\n'quit'      this should be pretty self explanatory, but if you somehow",
             "\n            don't know what quit does, it just exits the game for you",
-            "\n\n               Thats all the commands i have implemented for now,",
-            "\n                    but more are on the way dont worry about it!",
+            "\n\n\n          That's all the commands I have implemented for now,",
+            "\n            But more are on the way dont worry about it! Have fun!",
         )
     else:
         print("IM WORKING ON IT")
@@ -348,7 +333,6 @@ game_map = {
         "Objects": []
     }
 }
-
 '''
 View of the game map:
                  Gallery
@@ -363,9 +347,6 @@ Torture --- Armory  |
                     |
                    Room
 '''
-
-
-
 moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inv", "map", "quit"]
 items = ["Handcuffs", "ring", "bones", "Sword", "metal chain", "key", "Meat", "Bread", "broken glass", "bloody knife"]
 usable_items = ["ring"]
@@ -377,7 +358,6 @@ directions = {
     's': 'south',
     'w': 'west',
 }
-
 def hint_timer(stopwatch, game_state):
     current_room = game_state.current_room
     while True:
@@ -398,14 +378,14 @@ def hint_timer(stopwatch, game_state):
                 print("Just leave the same way you came. 'move' then 'w'.")
                 print("You you are having troubles, just type 'quit', and reset the run :)")
             elif current_room == "Stairs":
-                print("Tip: Use the move command to move around, or use the map command to see where you are!")
+                print("[Insert text here]")
+                print("[Insert more text here]")
             else:
                 print("\nYou've been inactive for a while. Here's a general hint: ")
                 print("Try to explore different rooms and interact with objects to progress in the game.")
                 print("You can use commands like 'take', 'move', 'use', etc.")
                 print("Have fun exploring!")
             break
-
 
 ############# Testing cases #############
 def map_check(game_state):
@@ -439,13 +419,9 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
-
-
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
-        
-
 def load_game():
     try:
         with open("game_state.json", "r") as file:
@@ -453,9 +429,13 @@ def load_game():
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
         return None
-    
+
+
+
+
 
 def main():
+    GameIntro()
 
     os.system('cls')
     main_loop = True
@@ -466,13 +446,13 @@ def main():
         #this is all pregame stuff
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
         if game == "y":
-            os.system('cls')
             game_state = load_game()
             if game_state is None:
                 print("No previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
-                GameIntro()
+                os.system('cls')
+                print_instructions()
         elif game == "n":
             game_state = GameState()
             os.system('cls')
@@ -515,9 +495,7 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
-            elif command == "use":
-                use(game_state, usable_items)
-                separation()
+
             stopwatch.reset()
             stopwatch.start()
 main()
