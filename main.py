@@ -7,8 +7,6 @@ from game_map import game_map, moves, directions
 
 
 def main():
-    GameIntro()
-
     os.system('cls')
     main_loop = True
 
