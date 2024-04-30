@@ -435,8 +435,6 @@ def load_game():
 
 
 def main():
-    GameIntro()
-
     os.system('cls')
     main_loop = True
 
