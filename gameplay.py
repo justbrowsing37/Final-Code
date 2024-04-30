@@ -1,4 +1,4 @@
-from classes import GameState
+from classes import GameState, Color
 
 
 
@@ -104,3 +104,34 @@ def help():
         )
     else:
         print("IM WORKING ON IT")
+def map_check(game_state):
+    current_room = game_state.current_room
+    print(f"Your current room is {current_room}")
+  #←→↑↓«»
+    # Define the map layout with room connections
+    map_layout = [
+        "                                                         Compass:     ↑N↑",
+        "                     Gallery                                      « W [♦] E »",
+        "                        |                                             ↓S↓",
+        "Ballroom ----------- Chapel --------- Tunnel",
+        "                        |           ",
+        "                        |              Repository -- Pantry -- Lab",
+        "                        |                 |",
+        "Dungeon ------------ Stairs ---------- Kitchen",
+        "   |                    |",
+        "Torture -- Armory       |",
+        "                        |",
+        "                      Room",
+        "",
+        ""
+    ]
+    # Print the map with the current room highlighted in green
+    print((Color.BOLD + Color.BLUE + "Game Map [Green text is the room you are in]:" + Color.END))
+    for room_line in map_layout:
+        line = ""
+        for room_name in room_line.split(" "):
+            if room_name == current_room:
+                line += Color.GREEN + room_name + Color.END + " "
+            else:
+                line += room_name + " "
+        print(line)

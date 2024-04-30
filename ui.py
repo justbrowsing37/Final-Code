@@ -1,8 +1,9 @@
 import sys
 import random
 import time
+import json
 import os
-from classes import Color
+from classes import Color, GameState
 
 
 
@@ -94,3 +95,16 @@ def separation():
     linebreaks_ = (
             Color.UNDERLINE + '\n║                                                                                            ║' + Color.END)
     print(linebreaks, linebreaks_)
+
+
+def save_game(game_state):
+    with open("game_state.json", "w") as file:
+        json.dump(game_state.to_dict(), file)
+
+def load_game():
+    try:
+        with open("game_state.json", "r") as file:
+            ("Loading previous game...")
+            return GameState.from_dict(json.load(file))
+    except FileNotFoundError:
+        return None
