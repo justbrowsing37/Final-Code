@@ -18,7 +18,7 @@ def main():
         if game == "y":
             game_state = load_game()
             if game_state is None:
-                print("No previous game found...\nStarting a new game...")
+                print("\n\nNo previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
                 os.system('cls')
