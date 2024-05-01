@@ -1,9 +1,6 @@
 from classes import GameState, Color
 
 
-
-
-
 def display_room_info(current_room, game_map):
     room_info = game_map[current_room]
     print("\nCurrent Room: " + current_room)
@@ -11,6 +8,7 @@ def display_room_info(current_room, game_map):
     print("Exits:", ", ".join(room_info["Exits"]))
     print("Items in the room:", ", ".join(room_info["Items"]))
     print("Objects in the room:", ", ".join(room_info["Objects"]))
+
 def Take(game_state, game_map):
     current_room_info = game_map[game_state.current_room]
     item_name = input("Which item would you like to pick up? ").strip().lower()
@@ -21,6 +19,7 @@ def Take(game_state, game_map):
         print(f"You took the {item_name}.")
     else:
         print("There is no such item in the room.")
+        
     return game_state
 def move(game_state, game_map, directions):
     current_room_state = game_state.current_room
