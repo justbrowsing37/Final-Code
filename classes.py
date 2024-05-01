@@ -1,4 +1,6 @@
 import time
+import os
+from game_map import objects
 
 class Color:
     PURPLE = '\033[95m'
@@ -48,3 +50,16 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
+
+class Objects():
+    def thing1():
+        pass
+    
+    def thing2():
+        pass
+
+    def thing3():
+        pass
+    
+    def thing4():
+        pass
