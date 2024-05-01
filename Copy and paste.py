@@ -389,6 +389,7 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
+
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
@@ -399,8 +400,6 @@ def load_game():
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
         return None
-
-
 
 
 
