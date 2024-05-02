@@ -102,7 +102,7 @@ def help():
             "\n            But more are on the way dont worry about it! Have fun!",
         )
     else:
-        print("IM WORKING ON IT")
+        print("Dev msg: ", (Color.BOLD + "Coming soon..." + Color.END))
 def map_check(game_state):
     current_room = game_state.current_room
     print(f"Your current room is {current_room}")

@@ -2,7 +2,7 @@ import os
 import time
 import msvcrt
 from classes import GameState, StopWatch, Objects, keyboardDisable
-from ui import GameIntro, print_instructions, load_game, save_game, separation
+from ui import print_instructions, load_game, save_game, separation
 from gameplay import display_room_info, Take, move, quit, inv_check, help, map_check
 from game_map import game_map, moves, directions
 
