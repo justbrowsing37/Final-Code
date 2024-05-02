@@ -62,7 +62,7 @@ class Objects():
     def moved():
         pass
     
-    def thing4():
+    def unmoved():
         pass
 
 import time
