@@ -52,14 +52,14 @@ class StopWatch:
         print(f"Time survived: {totalTime:.2f} seconds")
 
 class Objects():
-    def thing1():
+    def opened():
         pass
     
-    def thing2():
+    def closed():
         pass
 
-    def thing3():
+    def moved():
         pass
     
-    def thing4():
+    def unmoved():
         pass
