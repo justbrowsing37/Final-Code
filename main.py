@@ -1,6 +1,7 @@
 import os
 import time
-from classes import GameState, StopWatch, Objects
+import msvcrt
+from classes import GameState, StopWatch, Objects, keyboardDisable
 from ui import GameIntro, print_instructions, load_game, save_game, separation
 from gameplay import display_room_info, Take, move, quit, inv_check, help, map_check
 from game_map import game_map, moves, directions
@@ -9,6 +10,7 @@ from game_map import game_map, moves, directions
 def main():
     os.system('cls')
     main_loop = True
+    disable = keyboardDisable()
 
     stopwatch = StopWatch()
     stopwatch.start()
@@ -19,10 +21,12 @@ def main():
             game_state = load_game()
             if game_state is None:
                 print("\n\nNo previous game found...\nStarting a new game...")
+                disable.start()
                 time.sleep(3)
                 game_state = GameState()
                 os.system('cls')
                 print_instructions()
+                disable.stop()
         elif game == "n":
             game_state = GameState()
             os.system('cls')
