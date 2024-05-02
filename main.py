@@ -1,6 +1,6 @@
 import os
 import time
-from classes import GameState, StopWatch
+from classes import GameState, StopWatch, Objects
 from ui import GameIntro, print_instructions, load_game, save_game, separation
 from gameplay import display_room_info, Take, move, quit, inv_check, help, map_check
 from game_map import game_map, moves, directions
@@ -18,7 +18,7 @@ def main():
         if game == "y":
             game_state = load_game()
             if game_state is None:
-                print("No previous game found...\nStarting a new game...")
+                print("\n\nNo previous game found...\nStarting a new game...")
                 time.sleep(3)
                 game_state = GameState()
                 os.system('cls')
