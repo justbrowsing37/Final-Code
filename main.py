@@ -25,6 +25,7 @@ def main():
                 print_instructions()
         elif game == "n":
             game_state = GameState()
+            time.sleep(2)
             os.system('cls')
             print_instructions()
         else:
