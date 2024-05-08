@@ -1,6 +1,5 @@
 import os
 import time
-import msvcrt
 from classes import GameState, StopWatch, Objects, keyboardDisable
 from ui import print_instructions, load_game, save_game, separation
 from gameplay import display_room_info, Take, move, quit, inv_check, help, map_check
@@ -68,6 +67,5 @@ while main_loop:
             separation()
         elif command == "map":
             map_check(game_state)
-
         stopwatch.reset()
         stopwatch.start()
