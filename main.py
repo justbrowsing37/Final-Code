@@ -44,7 +44,7 @@ while main_loop:
             inv_check(game_state)
             continue
         elif command == "help":
-            help()
+            help(game_state)
             continue
         elif command == "quit":
             if quit():
