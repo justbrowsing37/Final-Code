@@ -47,7 +47,7 @@ while main_loop:
             help(game_state)
             continue
         elif command == "quit":
-            if quit():
+            if quit(game_state):
                 os.system('cls')
                 print("Quitting the game... \n\n\nGoodbye! \n\n")
                 main_loop = False

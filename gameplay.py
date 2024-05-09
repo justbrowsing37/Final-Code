@@ -1,5 +1,6 @@
 from classes import GameState, Color
 from game_map import usable_items, game_map
+from ui import save_game
 
 
 def show_available_moves(current_room, game_map, player_inventory):
@@ -79,11 +80,20 @@ def use(game_state, usable_items):
         print("You can't use that item.")
     else:
         print("That item doesn't exist.")
-def quit():
+def quit(game_state):
     while True:        
         quit_game = input("Are you sure you want to quit the game? [y/n] \n\n>> ").strip().lower()
         if quit_game == "y":
-            return True
+            save = input("\nWould you like to save you're game before you go? [y/n] \n\n>>").strip().lower()
+            if save == "y":
+                save_game(game_state)
+                return True
+            elif save == "n":
+                print("Ok we wont save you're game")
+                save_game(game_state)
+                return True
+            else:
+                print(f"{quit_game} is not a viable answer. Please enter 'y' or 'n'.")   
         elif quit_game == "n":
             return False
         else:
