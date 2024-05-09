@@ -68,7 +68,6 @@ class Objects():
 
 
 class keyboardDisable():
-
     def start(self):
         self.on = True
 
@@ -78,7 +77,6 @@ class keyboardDisable():
     def __call__(self): 
         while self.on:
             msvcrt.getwch()
-
 
     def __init__(self):
         self.on = False

@@ -1,4 +1,33 @@
 from classes import GameState, Color
+from game_map import usable_items, game_map
+
+
+def show_available_moves(current_room, game_map, player_inventory):
+    current_room_info = game_map[current_room]
+    print("Available moves:")
+    
+    # Display available directions to move
+    print("Directions:")
+    for direction in current_room_info["Exits"]:
+        print(f"- Move {direction} to go to {current_room_info['Exits'][direction]}")
+    
+    # Display available items to take in the room
+    if current_room_info["Items"]:
+        print("Items to take:")
+        for item in current_room_info["Items"]:
+            print(f"- Take {item}")
+    
+    # Display available items to use from the inventory
+    if player_inventory:
+        print("Items to use:")
+        for item in player_inventory:
+            if item in usable_items:
+                print(f"- Use {item}")
+    
+    print("Other actions:")
+    print("- Type 'inv' to check your inventory")
+    print("- Type 'map' to see the game map")
+    print("- Type 'quit' to quit the game")
 
 
 def display_room_info(current_room, game_map):
@@ -78,7 +107,7 @@ def inv_check(game_state):
         print("Your inventory: ")
         for item in game_state.player_inventory:
             print(f"- {item}")
-def help():
+def help(game_state):
     category = input("\nWhat do you need help with? \nCommands, Story, Current Moves \n\n>>").strip().lower()
     
     if category == "commands":
@@ -101,8 +130,10 @@ def help():
             "\n\n\n          That's all the commands I have implemented for now,",
             "\n            But more are on the way dont worry about it! Have fun!",
         )
-    else:
-        print("Dev msg: ", (Color.BOLD + "Coming soon..." + Color.END))
+    elif category == "current moves":
+        show_available_moves(game_state.current_room, game_map, game_state.player_inventory)
+    elif category == "Story":
+        print("Figure it out :) bc im still trying to work on it")
 def map_check(game_state):
     current_room = game_state.current_room
     print(f"Your current room is {current_room}")
