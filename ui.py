@@ -9,8 +9,7 @@ def print_instructions():
 def separation():
     linebreaks = (
             Color.BOLD + '______________________________________________________________________________________________' + Color.END)
-    linebreaks_ = (
-            Color.UNDERLINE + '\n║                                                                                            ║' + Color.END)
+    linebreaks_ = (Color.UNDERLINE + '\n║                                                                                            ║' + Color.END)
     print(linebreaks, linebreaks_)
 
 def save_game(game_state):
