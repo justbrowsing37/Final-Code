@@ -1,6 +1,6 @@
 import os
 import time
-from classes import GameState, StopWatch, Objects, keyboardDisable, Color
+from classes import GameState, StopWatch, keyboardDisable, Color
 from ui import print_instructions, load_game, save_game, separation
 from gameplay import display_room_info, Take, move, quit, inv_check, help, map_check
 from game_map import game_map, moves, directions
@@ -14,7 +14,7 @@ stopwatch = StopWatch()
 stopwatch.start()
 while main_loop:
     #this is all pregame stuff
-    game = input("Would you like to restore a previous game [y/n]: ", (Color.BOLD + "\n\n>> " + Color.END)).strip().lower()
+    game = input("Would you like to restore a previous game [y/n]: ").strip().lower()
     if game == "y":
         game_state = load_game()
         if game_state is None:
