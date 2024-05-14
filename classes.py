@@ -2,7 +2,6 @@ import time
 import os
 import msvcrt
 import time
-from game_map import objects
 
 class Color:
     PURPLE = '\033[95m'
@@ -52,19 +51,6 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
-
-class Objects():
-    def opened(self):
-        self.opened = True
-
-    def closed(self):
-        self.opened = False
-
-    def moved(self):
-        self.moved = True
-    
-    def unmoved(self):
-        self.moved = False
 
 
 class keyboardDisable():

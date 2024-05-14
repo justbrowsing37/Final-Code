@@ -3,8 +3,6 @@ from game_map import usable_items, game_map
 from ui import save_game
 
 
-#USE ACSII SYNTAX     GO GO GO GO GO
-
 
 
 def show_available_moves(current_room, game_map, player_inventory):
