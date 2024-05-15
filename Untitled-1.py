@@ -170,13 +170,11 @@ def main():
             print("RSA private key:", private_key)  # Print the RSA private key
 
         elif choice == '6':
-            try:
-                message = input("Enter the message to decrypt (comma-separated): ").split(',')  # Prompt the user to enter the encrypted message
-                private_key = tuple(int(x) for x in input("Enter the private key (d,n): ").split(','))  # Prompt the user to enter the private key
-                decrypted_message = rsa_decrypt(message, private_key)  # Decrypt the message using RSA
-                print("Decrypted Message:", decrypted_message)  # Print the decrypted message
-            except TypeError:
-                print("Unable to decrypt message...\n\nPlease try again\n")
+            message = input("Enter the message to decrypt (comma-separated): ").split(',')  # Prompt the user to enter the encrypted message
+            private_key = tuple(int(x) for x in input("Enter the private key (d,n): ").split(','))  # Prompt the user to enter the private key
+            decrypted_message = rsa_decrypt(message, private_key)  # Decrypt the message using RSA
+            print("Decrypted Message:", decrypted_message)  # Print the decrypted message
+        
 
         elif choice == '7':
             filename = input("Enter the filename to save the RSA key: ")  # Prompt the user to enter the filename
