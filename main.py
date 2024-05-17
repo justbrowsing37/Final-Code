@@ -16,6 +16,7 @@ while main_loop:
     #this is all pregame stuff
     game = input("Would you like to restore a previous game [y/n]: ").strip().lower()
     if game == "y":
+        os.system('cls')
         game_state = load_game()
         if game_state is None:
             print("\nNo previous game found...\nStarting a new game...")
