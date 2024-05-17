@@ -1,8 +1,7 @@
-''' [Make sure to fill out the program header as follows.]
-
+'''
 Student Name: Bhanu Sugguna
 Program Title: Caesar cipher
-Program Description: This si the last assignment for unit 6
+Program Description: This is the last assignment for unit 6
 Date Modified/Created: 2024-05-08
 Course: G10 Dig. Tech and Inov. w/ Mr. Mah
 '''
@@ -76,10 +75,14 @@ def rsa_encrypt(message, public_key):
     return encrypted_message
 
 # Function to decrypt a message using RSA
-def rsa_decrypt(message, private_key):
-    d, n = private_key
-    decrypted_message = ''.join([chr(pow(char, d, n)) for char in message])  # Decrypt each encrypted character using the private key
-    return decrypted_message
+def rsa_decrypt(encrypted_message, private_key):
+    d, n = private_key  # Unpack the private key into the decryption exponent (d) and the modulus (n)
+    decrypted_message = ''  # Initialize an empty string to hold the decrypted message
+    for encrypted_char in encrypted_message:
+        encrypted_char = int(encrypted_char)  # Convert the encrypted character from a string to an integer
+        decrypted_char = chr(pow(encrypted_char, d, n))  # Decrypt the character using the RSA formula: (encrypted_char^d) % n
+        decrypted_message += decrypted_char  # Append the decrypted character to the decrypted message
+    return decrypted_message  # Return the fully decrypted message
 
 # Function to save a key to a file
 def save_key(filename, key):
@@ -170,11 +173,15 @@ def main():
             print("RSA private key:", private_key)  # Print the RSA private key
 
         elif choice == '6':
-            message = input("Enter the message to decrypt (comma-separated): ").split(',')  # Prompt the user to enter the encrypted message
-            private_key = tuple(int(x) for x in input("Enter the private key (d,n): ").split(','))  # Prompt the user to enter the private key
-            decrypted_message = rsa_decrypt(message, private_key)  # Decrypt the message using RSA
-            print("Decrypted Message:", decrypted_message)  # Print the decrypted message
-        
+            try:
+                encrypted_message = input("Enter the encrypted message (comma-separated numbers): ").split(',')
+                private_key = tuple(int(x) for x in input("Enter the private key (d,n): ").split(','))
+                decrypted_message = rsa_decrypt(encrypted_message, private_key)
+                print("Decrypted Message:", decrypted_message)
+            except ValueError:
+                print("Invalid input. Please enter valid comma-separated numbers for the message and the correct private key format.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
         elif choice == '7':
             filename = input("Enter the filename to save the RSA key: ")  # Prompt the user to enter the filename
@@ -183,9 +190,9 @@ def main():
             print("RSA key saved to", filename)  # Print a confirmation message
 
         elif choice == '8':
-                filename = input("Enter the filename to load the RSA key from: ")  # Prompt the user to enter the filename
-                key = load_key(filename)  # Load the RSA key from the file
-                print("RSA key loaded from", filename, ":", key)  # Print the loaded RSA key
+            filename = input("Enter the filename to load the RSA key from: ")  # Prompt the user to enter the filename
+            key = load_key(filename)  # Load the RSA key from the file
+            print("RSA key loaded from", filename, ":", key)  # Print the loaded RSA key
 
         elif choice == '9':
             print("Goodbye!")  # Print a farewell message
