@@ -129,7 +129,12 @@ def Message():
             Color.BOLD + Color.UNDERLINE + 'PLEASE WAIT FOR INSTRUCTIONS BELOW... DO NOT TYPE' + Color.END) + "↓↓")
 def print_instructions():
     print((Color.BOLD + "Welcome to VOODOO CASTLE!" + Color.END).center(108))
-    print("\n                  Welcome player to my wonderful creation! Just know that this is\n                  a test module and things in here are all subject to change. But\n                  don't worry too much. Since I am a very crazy person and I am \n                  always looking for new ways to improve my game! So if you have \n                  any ideas for the game, Be sure to let me know! Anyways, some \n                  commands are |'move', 'take', and 'use'| Have fun! - Bhanu S. :)")
+    print("\n                  Welcome player to my wonderful creation! Just know that this is",
+          "\n                  a test module and things in here are all subject to change. But",
+          "\n                  don't worry too much. Since I am a very crazy person and I am ",
+          "\n                  always looking for new ways to improve my game! So if you have ",
+          "\n                  any ideas for the game, Be sure to let me know! Anyways, some ",
+          "\n                  commands are |'move', 'take', and 'use'| Have fun! - Bhanu S. :)")
     print("               ---------------------------------------------------------------------")
     print("\n")
 def separation():
