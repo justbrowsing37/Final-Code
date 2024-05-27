@@ -23,7 +23,6 @@ while main_loop:
             disable.start()
             time.sleep(3)
             game_state = GameState()
-            time.sleep(2)
             os.system('cls')
             print_instructions()
             disable.stop()
