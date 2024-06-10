@@ -65,4 +65,3 @@ class keyboardDisable():
 
     def __init__(self):
         self.on = False
-        import msvcrt
