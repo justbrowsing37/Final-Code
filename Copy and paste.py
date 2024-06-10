@@ -1,5 +1,4 @@
 import time, os, sys, random, json
-
 ####################    CLASSES    ###################
 class Color:
     PURPLE = '\033[95m'
@@ -22,7 +21,6 @@ class GameState:
             "current_room": self.current_room,
             "player_inventory": self.player_inventory
         }
-    
     @classmethod
     def from_dict(cls, state_dict):
         return cls(state_dict["current_room"], state_dict["player_inventory"])
@@ -47,8 +45,6 @@ class StopWatch:
         if self.isRunning:
             totalTime += time.time() - self.startTime
         print(f"Time survived: {totalTime:.2f} seconds")
-
-
 ####################   UI STUFF    ###################
 signatures = [
     "- Professional Moron",
@@ -66,7 +62,6 @@ signatures = [
     "- Gilberto Raymond and Team",
     "- Max Verstappen"
 ]
-
 random_sign = random.choice(signatures)
 def GameIntro():
     show_bar()
@@ -244,7 +239,6 @@ def help():
         )
     else:
         print("IM WORKING ON IT")
-
 game_map = {
     "Chapel": {
         "Description": " I am standing in a majestic chapel."
@@ -338,17 +332,17 @@ game_map = {
 }
 '''
 View of the game map:
-                 Gallery
-		  	        |
-Ballroom -------- Chapel ----- Tunnel
-                    |
-		  	        |              Repository -- Pantry -- Lab
-		            |                 |
-Dungeon --------- Stairs --------- Kitchen
-   |                |
-Torture --- Armory  |
-                    |
-                   Room
+                  Gallery
+		  	         |
+Ballroom -------- *Chapel* ----- Tunnel
+                     |
+		  	         |              Repository -- Pantry -- Lab
+		             |                  |
+Dungeon ---------- Stairs --------- Kitchen
+   |                 |
+Torture --- Armory   |
+                     |
+                    Room
 '''
 moves = ["n", "e", "s", "w", "take", "slide", "move", "turn", "climb", "push", "circle", "inv", "map", "quit"]
 items = ["Handcuffs", "ring", "bones", "Sword", "metal chain", "key", "Meat", "Bread", "broken glass", "bloody knife"]
@@ -361,8 +355,6 @@ directions = {
     's': 'south',
     'w': 'west',
 }
-
-############# Testing cases #############
 def map_check(game_state):
     current_room = game_state.current_room
     print(f"Your current room is {current_room}")
@@ -394,7 +386,6 @@ def map_check(game_state):
             else:
                 line += room_name + " "
         print(line)
-
 def save_game(game_state):
     with open("game_state.json", "w") as file:
         json.dump(game_state.to_dict(), file)
@@ -405,17 +396,12 @@ def load_game():
             return GameState.from_dict(json.load(file))
     except FileNotFoundError:
         return None
-
-
-
 def main():
     os.system('cls')
     main_loop = True
-
     stopwatch = StopWatch()
     stopwatch.start()
     while main_loop:
-        #this is all pregame stuff
         game = input("Would you like to restore a previous game [y/n]:\n\n>> ").strip().lower()
         if game == "y":
             game_state = load_game()
@@ -454,7 +440,6 @@ def main():
                 else:
                     print("Resuming the game...")
                     continue  # Continue the game loop
-
             if command not in moves:
                 print(f"You don't know how to '{command}'")
                 separation()
@@ -467,7 +452,6 @@ def main():
                 separation()
             elif command == "map":
                 map_check(game_state)
-
             stopwatch.reset()
             stopwatch.start()
 main()
